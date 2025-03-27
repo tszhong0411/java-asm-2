@@ -1,6 +1,8 @@
+
 import java.util.Scanner;
 
 public class TestClient {
+
   private final Scanner scanner;
   private Character player;
   private int round;
@@ -64,12 +66,33 @@ public class TestClient {
     while (player.getLives() > 0) {
       System.out.printf("Round: %s%n", round);
       printState();
-      System.out.print("Choose an action: (1) Collect Coin, (2) Collect Power-Up, (3) Hit Enemy, or type 'end' to exit.: ");
+      System.out
+          .print("Choose an action: (1) Collect Coin, (2) Collect Power-Up, (3) Hit Enemy, or type 'end' to exit.: ");
+
+      String action = scanner.nextLine().trim();
+
+      switch (action) {
+        case "end":
+          // User chose end game
+          System.out.println("Ending the game. Bye bye!");
+          return; // Exit the start() method, thus breaking the loop
+        case "1":
+          player.collectCoin();
+          break;
+        case "2":
+          player.collectPowerUp();
+          break;
+        default:
+          System.out.println("Invalid action. Please select a action from 1-3 or type 'end' to exit.");
+          continue;
+      }
 
       round += 1;
     }
 
-    // System.out.println("Game Over!");
+    if (player.getLives() == 0) {
+      System.out.println("Game Over!");
+    }
   }
 
   public static void main(String[] args) {

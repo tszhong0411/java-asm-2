@@ -15,6 +15,7 @@ public class Character {
     this.lives = 3;
   }
 
+  // Getters
   public String getName() {
     return name;
   }
@@ -37,6 +38,45 @@ public class Character {
 
   public int getLives() {
     return lives;
+  }
+
+  // Methods
+  public void collectCoin() {
+    coins += 1;
+    // Collecting 5 coins grants an extra life to the game character.
+    // Then reset the coins to 0.
+    if (coins % 5 == 0) {
+      lives += 1;
+      coins = 0;
+    }
+  }
+
+  public void collectPowerUp() {
+    PowerUpItems powerUpItem = null;
+
+    System.out.println("Ding! Yeah, collected a coin.");
+
+    // random number between 0 and 3 (inclusive)
+    int randomNumber = (int) (Math.random() * 4);
+
+    // switch case to determine which power-up item is collected
+    switch (randomNumber) {
+      case 0:
+        powerUpItem = new OneUpMushroom();
+        break;
+      case 1:
+        powerUpItem = new SuperMushroom();
+        break;
+      case 2:
+        powerUpItem = new Flower();
+        break;
+      case 3:
+        powerUpItem = new Star();
+        break;
+    }
+
+    System.out.printf("%s collected a %s\n", this.getName(), powerUpItem.getName());
+    System.out.println(powerUpItem.getDialogue());
   }
 }
 

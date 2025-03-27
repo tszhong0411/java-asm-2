@@ -18,3 +18,5 @@ hs_err_pid*
 replay_pid*
 
 *.pdf
+
+.DS_Store

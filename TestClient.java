@@ -27,15 +27,19 @@ public class TestClient {
           case 1:
             choice = new Mario();
             break;
+
           case 2:
             choice = new Luigi();
             break;
+
           case 3:
             choice = new Toad();
             break;
+
           case 4:
             choice = new Peach();
             break;
+
           default:
             throw new IllegalArgumentException("Can't not found the character");
         }
@@ -75,13 +79,20 @@ public class TestClient {
         case "end":
           // User chose end game
           System.out.println("Ending the game. Bye bye!");
-          return; // Exit the start() method, thus breaking the loop
+          return;
+
         case "1":
           player.collectCoin();
           break;
+
         case "2":
           player.collectPowerUp();
           break;
+
+        case "3":
+          player.hitEnemy();
+          break;
+
         default:
           System.out.println("Invalid action. Please select a action from 1-3 or type 'end' to exit.");
           continue;

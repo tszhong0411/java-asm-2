@@ -5,14 +5,24 @@ public class Character {
   private String message;
   private String specialAbility;
   private int lives;
+  private String previousState;
+  private int invincibleRounds;
+
+  private static final String INITIAL_STATE = "SMALL";
+  private static final int INITIAL_COINS = 0;
+  private static final int INITIAL_LIVES = 3;
+  private static final int INITIAL_INVINCIBLE_ROUNDS = 3;
 
   public Character(String name, String message, String specialAbility) {
     this.name = name;
-    this.state = "SMALL";
-    this.coins = 0;
     this.message = message;
     this.specialAbility = specialAbility;
-    this.lives = 3;
+
+    this.state = INITIAL_STATE;
+    this.coins = INITIAL_COINS;
+    this.lives = INITIAL_LIVES;
+    this.previousState = INITIAL_STATE;
+    this.invincibleRounds = INITIAL_INVINCIBLE_ROUNDS;
   }
 
   // Getters
@@ -67,19 +77,65 @@ public class Character {
       case 0:
         powerUpItem = new OneUpMushroom(this);
         break;
+
       case 1:
         powerUpItem = new SuperMushroom(this);
         break;
+
       case 2:
         powerUpItem = new Flower(this);
         break;
+
       case 3:
         powerUpItem = new Star(this);
         break;
     }
 
-    System.out.printf("%s collected a %s\n", this.getName(), powerUpItem.getName());
-    System.out.println(powerUpItem.getDialogue());
+    if (powerUpItem != null) {
+      System.out.printf("%s collected a %s\n", this.getName(), powerUpItem.getName());
+      System.out.println(powerUpItem.getDialogue());
+
+      powerUpItem.applyEffect();
+    }
+  }
+
+  public void hitEnemy() {
+    System.out.println("Oh enemy!");
+
+    switch (this.state) {
+      case "SMALL":
+        this.previousState = this.state;
+        System.out.println("Mama mia! I lost a life!");
+        this.lives -= 1;
+        break;
+
+      case "BIG":
+        this.previousState = this.state;
+        System.out.println("Ooops! I become small.");
+        this.state = "SMALL";
+        break;
+
+      case "FIRE":
+        this.previousState = this.state;
+        System.out.println("Oh yeah! I kill the enemy!");
+        System.out.println("Ooops! I become small.");
+        this.state = "SMALL";
+        break;
+
+      case "INVINCIBLE":
+        System.out.println("Woohoo!");
+        this.invincibleRounds -= 1;
+
+        if (this.invincibleRounds == 0) {
+          System.out.println("Oh! Star effect has gone!");
+          this.state = this.previousState;
+          this.invincibleRounds = INITIAL_INVINCIBLE_ROUNDS;
+        }
+        break;
+
+      default:
+        break;
+    }
   }
 
   public void gainLife() {

@@ -6,6 +6,7 @@ public abstract class PowerUpItem {
   public PowerUpItem(String name, String dialogue, Character character) {
     this.name = name;
     this.dialogue = dialogue;
+    this.character = character;
   }
 
   // Getters
@@ -23,7 +24,7 @@ public abstract class PowerUpItem {
 
 class OneUpMushroom extends PowerUpItem {
   public OneUpMushroom(Character character) {
-    super("One-Up Mushroom", "Oh Yeah! I got a life!", character);
+    super("One-up Mushroom", "Oh Yeah! I got a life!", character);
   }
 
   public void applyEffect() {

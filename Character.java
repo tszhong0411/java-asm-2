@@ -40,6 +40,11 @@ public class Character {
     return lives;
   }
 
+  // Setters
+  public void setState(String state) {
+    this.state = state;
+  }
+
   // Methods
   public void collectCoin() {
     coins += 1;
@@ -60,21 +65,25 @@ public class Character {
     // switch case to determine which power-up item is collected
     switch (randomNumber) {
       case 0:
-        powerUpItem = new OneUpMushroom();
+        powerUpItem = new OneUpMushroom(this);
         break;
       case 1:
-        powerUpItem = new SuperMushroom();
+        powerUpItem = new SuperMushroom(this);
         break;
       case 2:
-        powerUpItem = new Flower();
+        powerUpItem = new Flower(this);
         break;
       case 3:
-        powerUpItem = new Star();
+        powerUpItem = new Star(this);
         break;
     }
 
     System.out.printf("%s collected a %s\n", this.getName(), powerUpItem.getName());
     System.out.println(powerUpItem.getDialogue());
+  }
+
+  public void gainLife() {
+    lives += 1;
   }
 }
 

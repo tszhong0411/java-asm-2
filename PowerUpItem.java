@@ -1,8 +1,9 @@
-public class PowerUpItem {
+public abstract class PowerUpItem {
   private String name;
   private String dialogue;
+  protected Character character;
 
-  public PowerUpItem(String name, String dialogue) {
+  public PowerUpItem(String name, String dialogue, Character character) {
     this.name = name;
     this.dialogue = dialogue;
   }
@@ -17,31 +18,45 @@ public class PowerUpItem {
   }
 
   // Methods
-  public void applyEffect(Character character) {
-    // TODO: Implement the effect of the power-up item
-  }
+  public abstract void applyEffect();
 }
 
 class OneUpMushroom extends PowerUpItem {
-  public OneUpMushroom() {
-    super("One-Up Mushroom", "Oh Yeah! I got a life!");
+  public OneUpMushroom(Character character) {
+    super("One-Up Mushroom", "Oh Yeah! I got a life!", character);
+  }
+
+  public void applyEffect() {
+    character.gainLife();
   }
 }
 
 class SuperMushroom extends PowerUpItem {
-  public SuperMushroom() {
-    super("Super Mushroom", "Oh Yeah! I grow bigger!");
+  public SuperMushroom(Character character) {
+    super("Super Mushroom", "Oh Yeah! I grow bigger!", character);
+  }
+
+  public void applyEffect() {
+    character.setState("BIG");
   }
 }
 
 class Flower extends PowerUpItem {
-  public Flower() {
-    super("Flower", "Oh Yeah! I got a fire!");
+  public Flower(Character character) {
+    super("Flower", "Oh Yeah! I got a fire!", character);
+  }
+
+  public void applyEffect() {
+    character.setState("FIRE");
   }
 }
 
 class Star extends PowerUpItem {
-  public Star() {
-    super("Star", "Oh Yeah! I become invincible!");
+  public Star(Character character) {
+    super("Star", "Oh Yeah! I become invincible!", character);
+  }
+
+  public void applyEffect() {
+    character.setState("INVINCIBLE");
   }
 }

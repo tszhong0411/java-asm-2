@@ -141,6 +141,15 @@ public class Character {
   public void gainLife() {
     lives += 1;
   }
+
+  // Other unused methods
+  public void jump() {
+    System.out.println("Jump!");
+  }
+
+  public void run() {
+    System.out.println("Run!");
+  }
 }
 
 class Mario extends Character {

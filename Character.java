@@ -52,9 +52,7 @@ public class Character {
   }
 
   public void collectPowerUp() {
-    PowerUpItems powerUpItem = null;
-
-    System.out.println("Ding! Yeah, collected a coin.");
+    PowerUpItem powerUpItem = null;
 
     // random number between 0 and 3 (inclusive)
     int randomNumber = (int) (Math.random() * 4);

@@ -11,11 +11,11 @@ public abstract class PowerUpItem {
 
   // Getters
   public String getName() {
-    return name;
+    return this.name;
   }
 
   public String getDialogue() {
-    return dialogue;
+    return this.dialogue;
   }
 
   // Methods

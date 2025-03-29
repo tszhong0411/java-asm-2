@@ -27,27 +27,27 @@ public class Character {
 
   // Getters
   public String getName() {
-    return name;
+    return this.name;
   }
 
   public String getState() {
-    return state;
+    return this.state;
   }
 
   public int getCoins() {
-    return coins;
+    return this.coins;
   }
 
   public String getMessage() {
-    return message;
+    return this.message;
   }
 
   public String getSpecialAbility() {
-    return specialAbility;
+    return this.specialAbility;
   }
 
   public int getLives() {
-    return lives;
+    return this.lives;
   }
 
   // Setters

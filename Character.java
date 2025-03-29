@@ -1,14 +1,24 @@
+/**
+ * Since I have experience on using enums in other languages, I decided to use them here.
+ * It is more readable and easier to manage.
+ * 
+ * Reference: https://www.baeldung.com/a-guide-to-java-enums
+ */
+enum GameState {
+  SMALL, BIG, FIRE, INVINCIBLE
+}
+
 public class Character {
   private String name;
-  private String state;
+  private GameState state;
   private int coins;
   private String message;
   private String specialAbility;
   private int lives;
-  private String previousState;
+  private GameState previousState;
   private int invincibleRounds;
 
-  private static final String INITIAL_STATE = "SMALL";
+  private static final GameState INITIAL_STATE = GameState.SMALL;
   private static final int INITIAL_COINS = 0;
   private static final int INITIAL_LIVES = 3;
   private static final int INITIAL_INVINCIBLE_ROUNDS = 3;
@@ -30,7 +40,7 @@ public class Character {
     return this.name;
   }
 
-  public String getState() {
+  public GameState getState() {
     return this.state;
   }
 
@@ -51,7 +61,7 @@ public class Character {
   }
 
   // Setters
-  public void setState(String state) {
+  public void setState(GameState state) {
     this.state = state;
   }
 
@@ -103,26 +113,26 @@ public class Character {
     System.out.println("Oh enemy!");
 
     switch (this.state) {
-      case "SMALL":
+      case SMALL:
         this.previousState = this.state;
         System.out.println("Mama mia! I lost a life!");
         this.lives -= 1;
         break;
 
-      case "BIG":
+      case BIG:
         this.previousState = this.state;
         System.out.println("Ooops! I become small.");
-        this.state = "SMALL";
+        this.state = GameState.SMALL;
         break;
 
-      case "FIRE":
+      case FIRE:
         this.previousState = this.state;
         System.out.println("Oh yeah! I kill the enemy!");
         System.out.println("Ooops! I become small.");
-        this.state = "SMALL";
+        this.state = GameState.SMALL;
         break;
 
-      case "INVINCIBLE":
+      case INVINCIBLE:
         System.out.println("Woohoo!");
         this.invincibleRounds -= 1;
 

@@ -38,7 +38,7 @@ class SuperMushroom extends PowerUpItem {
   }
 
   public void applyEffect() {
-    character.setState("BIG");
+    character.setState(GameState.BIG);
   }
 }
 
@@ -48,7 +48,7 @@ class Flower extends PowerUpItem {
   }
 
   public void applyEffect() {
-    character.setState("FIRE");
+    character.setState(GameState.FIRE);
   }
 }
 
@@ -58,6 +58,6 @@ class Star extends PowerUpItem {
   }
 
   public void applyEffect() {
-    character.setState("INVINCIBLE");
+    character.setState(GameState.INVINCIBLE);
   }
 }

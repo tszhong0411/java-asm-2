@@ -13,7 +13,6 @@ public class Character {
   private GameState state;
   private int coins;
   private String message;
-  private String specialAbility;
   private int lives;
   private GameState previousState;
   private int invincibleRounds;
@@ -23,10 +22,9 @@ public class Character {
   private static final int INITIAL_LIVES = 3;
   private static final int INITIAL_INVINCIBLE_ROUNDS = 3;
 
-  public Character(String name, String message, String specialAbility) {
+  public Character(String name, String message) {
     this.name = name;
     this.message = message;
-    this.specialAbility = specialAbility;
 
     this.state = INITIAL_STATE;
     this.coins = INITIAL_COINS;
@@ -50,10 +48,6 @@ public class Character {
 
   public String getMessage() {
     return this.message;
-  }
-
-  public String getSpecialAbility() {
-    return this.specialAbility;
   }
 
   public int getLives() {
@@ -178,10 +172,18 @@ class Peach extends Character {
   public Peach() {
     super("Peach", "Please be careful!", "Float in air");
   }
+
+  public void floatInAir() {
+    System.out.println("I'm floating in the air!");
+  }
 }
 
 class Toad extends Character {
   public Toad() {
     super("Toad", "Yay!", "Reveal hidden item");
+  }
+
+  public void revealHiddenItem() {
+    System.out.println("I'm revealing a hidden item!");
   }
 }

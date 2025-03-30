@@ -38,7 +38,10 @@ class SuperMushroom extends PowerUpItem {
   }
 
   public void applyEffect() {
-    character.setState(GameState.BIG);
+    // Only change state to BIG if the character is in SMALL state
+    if (character.getState() == GameState.SMALL) {
+      character.setState(GameState.BIG);
+    }
   }
 }
 
@@ -48,7 +51,10 @@ class Flower extends PowerUpItem {
   }
 
   public void applyEffect() {
-    character.setState(GameState.FIRE);
+    // Only change state to FIRE if the character is not in INVINCIBLE state
+    if (character.getState() != GameState.INVINCIBLE) {
+      character.setState(GameState.FIRE);
+    }
   }
 }
 

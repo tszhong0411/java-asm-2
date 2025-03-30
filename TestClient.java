@@ -99,6 +99,16 @@ public class TestClient {
       }
 
       round += 1;
+
+      if (player.getState() == GameState.INVINCIBLE) {
+        player.setInvincibilityRounds(player.getInvincibilityRounds() - 1);
+
+        if (player.getInvincibilityRounds() == 0) {
+          System.out.println("Oh! Star effect has gone!");
+          player.setState(player.getPreviousState());
+          player.resetInvincibilityRounds();
+        }
+      }
     }
 
     if (player.getLives() == 0) {

@@ -20,7 +20,8 @@ public class Character {
   private static final GameState INITIAL_STATE = GameState.SMALL;
   private static final int INITIAL_COINS = 0;
   private static final int INITIAL_LIVES = 3;
-  private static final int INITIAL_INVINCIBLE_ROUNDS = 3;
+  // +1 for the star power-up
+  private static final int INITIAL_INVINCIBLE_ROUNDS = 3 + 1;
 
   public Character(String name, String message) {
     this.name = name;
@@ -54,9 +55,25 @@ public class Character {
     return this.lives;
   }
 
+  public GameState getPreviousState() {
+    return this.previousState;
+  }
+
+  public int getInvincibilityRounds() {
+    return this.invincibleRounds;
+  }
+
   // Setters
   public void setState(GameState state) {
     this.state = state;
+  }
+
+  public void setInvincibilityRounds(int invincibleRounds) {
+    this.invincibleRounds = invincibleRounds;
+  }
+
+  public void resetInvincibilityRounds() {
+    this.invincibleRounds = INITIAL_INVINCIBLE_ROUNDS;
   }
 
   // Methods
@@ -91,6 +108,10 @@ public class Character {
         break;
 
       case 3:
+        // Save the previous state before creating the Star power-up
+        this.previousState = this.state;
+        // Reset the invincible rounds to the initial value
+        this.invincibleRounds = INITIAL_INVINCIBLE_ROUNDS;
         powerUpItem = new Star(this);
         break;
     }
@@ -108,19 +129,16 @@ public class Character {
 
     switch (this.state) {
       case SMALL:
-        this.previousState = this.state;
         System.out.println("Mama mia! I lost a life!");
         this.lives -= 1;
         break;
 
       case BIG:
-        this.previousState = this.state;
         System.out.println("Ooops! I become small.");
         this.state = GameState.SMALL;
         break;
 
       case FIRE:
-        this.previousState = this.state;
         System.out.println("Oh yeah! I kill the enemy!");
         System.out.println("Ooops! I become small.");
         this.state = GameState.SMALL;
@@ -128,13 +146,6 @@ public class Character {
 
       case INVINCIBLE:
         System.out.println("Woohoo!");
-        this.invincibleRounds -= 1;
-
-        if (this.invincibleRounds == 0) {
-          System.out.println("Oh! Star effect has gone!");
-          this.state = this.previousState;
-          this.invincibleRounds = INITIAL_INVINCIBLE_ROUNDS;
-        }
         break;
 
       default:

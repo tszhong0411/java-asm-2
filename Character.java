@@ -158,19 +158,19 @@ public class Character {
 
 class Mario extends Character {
   public Mario() {
-    super("Mario", "Let's-a go!", "");
+    super("Mario", "Let's-a go!");
   }
 }
 
 class Luigi extends Character {
   public Luigi() {
-    super("Luigi", "I'm-a Luigi", "");
+    super("Luigi", "I'm-a Luigi");
   }
 }
 
 class Peach extends Character {
   public Peach() {
-    super("Peach", "Please be careful!", "Float in air");
+    super("Peach", "Please be careful!");
   }
 
   public void floatInAir() {
@@ -180,7 +180,7 @@ class Peach extends Character {
 
 class Toad extends Character {
   public Toad() {
-    super("Toad", "Yay!", "Reveal hidden item");
+    super("Toad", "Yay!");
   }
 
   public void revealHiddenItem() {

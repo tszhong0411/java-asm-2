@@ -1,8 +1,6 @@
-
 import java.util.Scanner;
 
 public class TestClient {
-
   private final Scanner scanner;
   private Character player;
   private int round;

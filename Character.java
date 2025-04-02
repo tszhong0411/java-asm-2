@@ -165,6 +165,10 @@ public class Character {
   public void run() {
     System.out.println("Run!");
   }
+
+  public void move() {
+    System.out.println("Move!");
+  }
 }
 
 class Mario extends Character {
